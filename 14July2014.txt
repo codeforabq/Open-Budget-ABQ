@@ -1,0 +1,9 @@
+Goal for tonight: Play with D3!
+
+Pull code from Ashville's open budget app.  They ised react, d3, Laravel
+http://communitybudgets.org/sites/asheville/whatsnew#
+https://github.com/DemocracyApps/GBE/blob/master/gbe/resources/assets/js/components/aux/D3BarChart.js
+
+Virtual Community Assessment Documment:
+https://code4abq.slack.com/files/smallmelo/F07L3M9RA/virtualassessmentopenbudgetabq
+
