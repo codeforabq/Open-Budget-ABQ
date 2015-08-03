@@ -1,0 +1,51 @@
+department,generalFund,speFundsIncluded,speFundsNotIncluded,debtServiceFunds,enterpriseFunds,internalServiceFunds,interfundElimination,total,wordIndex
+Cultural Services,11233,0,0,0,0,0,0,11233,-1
+Family & Community Services,31328,0,18483,0,4781,0,1292,53300,3
+Senior Affairs,6528,0,7591,0,0,0,65,14054,-1
+Parks & Recreation,25756,0,168,0,4577,0,1286,29215,-1
+Environmental Health,1601,706,0,0,0,0,0,2307,-1
+Human & Family Development,76446,706,26242,0,9358,0,2643,110109,3
+Animal Welfare,10592,79,0,0,0,0,5,10666,-1
+Fire,73721,1902,2029,102,0,0,170,77584,-1
+Family & Community services,6534,0,0,0,0,0,0,6534,3
+Legal,879,0,0,0,0,0,0,879,-1
+Police,149875,3200,4610,0,0,0,721,156964,-1
+Public Safety,241601,5181,6639,102,0,0,896,252627,-1
+Aviation,0,0,0,0,83640,0,17054,66586,-1
+Municipal Development,25217,5417,0,0,2047,0,784,31897,-1
+City Support,13692,0,0,73564,0,0,9867,77389,-1
+Public Infrastructure,38909,5417,0,73564,85687,0,27705,175872,-1
+Municipal Development,458,0,0,0,0,0,0,458,-1
+Parks & Recreation,3479,0,0,0,0,0,2803,676,-1
+Planning Department,13830,0,0,0,0,0,0,13830,-1
+Sustainable Community Development,17767,0,0,0,0,0,2803,14964,1
+Cultural Services,12771,2100,0,0,0,0,0,14871,-1
+Parks & Recreation,0,2859,0,0,0,0,0,2859,-1
+Solid Waste,0,0,401,0,70065,0,4998,65468,-1
+Environmental Health,1209,2367,2374,0,0,0,234,5716,-1
+Transit,19415,0,970,0,49401,0,24774,45012,-1
+City Support,384,0,0,0,0,0,384,0,-1
+Environmental Protection & Enhancement,33779,7326,3745,0,119466,0,30390,133926,1
+Economic Development,4651,0,0,0,0,0,0,4651,-1
+Municipal Development,5421,0,0,0,4353,0,608,9166,-1
+Finance & Administrative Svc,0,12921,0,0,0,0,6832,6089,-1
+City Support,113,0,0,0,0,0,113,0,-1
+Economic Vitality,10185,12921,0,0,4353,0,7553,19906,-1
+Office of the City Clerk,804,0,0,0,0,0,0,804,-1
+Cultural Services,10781,2087,52,0,0,0,2,12918,-1
+Municipal Development,0,0,0,0,1014,0,1014,0,-1
+City Support,496,0,0,0,0,0,0,496,-1
+Community & Cultural Engagement,12081,2087,52,0,1014,0,1016,14218,3
+Office of the City Clerk,450,0,0,0,0,0,0,450,-1
+Council Services,3607,0,0,0,0,0,0,3607,-1
+Municipal Development,11378,3095,0,0,0,0,2110,12363,-1
+Finance & Administrative Svc,22401,500,0,0,0,53977,1970,74908,-1
+Legal,4709,0,0,0,0,0,0,4709,-1
+Mayor's Office Department,1016,0,0,0,0,0,0,1016,-1
+Chief Administrative Office,2154,0,0,0,0,0,0,2154,-1
+Internal Audit,794,0,0,0,0,0,0,794,-1
+Office of Inspector General,337,0,0,0,0,0,0,337,2
+Human Resources,2387,0,0,0,0,61278,71,63594,-1
+City Support,13402,0,0,0,0,0,5810,7592,-1
+Government Excellence & Effectiveness,62635,3595,0,0,0,115255,9961,171524,1
+allDepartmentTotal,493403,37233,36678,73666,219878,115255,82967,893146,-1
