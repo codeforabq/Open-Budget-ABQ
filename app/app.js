@@ -9,7 +9,7 @@ var color = d3.scale.ordinal()
 
 var arc = d3.svg.arc()
     .outerRadius(radius)
-    .innerRadius(radius - 30);
+    // .innerRadius(radius - 30);
 
 var pie = d3.layout.pie()
     .sort(null)
@@ -33,9 +33,9 @@ d3.tsv('data/budget-first-test.tsv', function(error, data) {
 
   data.forEach(function(d) {
     d.budgets = color.domain().map(function(name) {
-      return {name: 'total', budget: +d[name]};
+      return {name: 'total', TOTAL: +d[name]};
     });
-    d.budgets.push({name: 'grandTotal', budget: grandTotal})
+    d.budgets.push({name: 'grandTotal', TOTAL: grandTotal})
     // console.log(JSON.stringify(d, null, 2));
   });
 
@@ -47,17 +47,17 @@ d3.tsv('data/budget-first-test.tsv', function(error, data) {
       .attr("height", radius * 2)
     .append("g")
       .attr("transform", "translate(" + radius + "," + radius + ")");
+console.log(pie([2, 4]));
+  svg.selectAll(".arc")
+      .data(function(d) { console.log(pie(d.budgets));return pie(d.budgets); })
+    .enter().append("path")
+      .attr("class", "arc")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.name); });
 
-  // svg.selectAll(".arc")
-  //     .data(function(d) { return pie(d.budgets); })
-  //   .enter().append("path")
-  //     .attr("class", "arc")
-  //     .attr("d", arc)
-  //     .style("fill", function(d) { return color(d.data.name); });
-
-  // svg.append("text")
-  //     .attr("dy", ".35em")
-  //     .style("text-anchor", "middle")
-  //     .text(function(d) { return d.ORGANIZATION; });
+  svg.append("text")
+      .attr("dy", ".35em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.ORGANIZATION; });
 
 });
