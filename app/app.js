@@ -1,4 +1,8 @@
 
+var d3 = require('d3');
+var $ = require('jquery');
+var bootstrap = require('bootstrap');
+
 
 
 var radius = 74,
@@ -15,7 +19,7 @@ var pie = d3.layout.pie()
     .value(function(d) { return d.amount; });
 
 
-d3.tsv('data/budget-first-test.tsv', function(error, cityData) {
+d3.tsv('app/data/budget-first-test.tsv', function(error, cityData) {
   if (error) throw error;
 
   // keep only the key total
