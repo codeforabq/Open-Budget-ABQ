@@ -7,7 +7,7 @@ module.exports = function() {
   .range(["#98abc5", "#8a89a6"]);
 
   var arc = d3.svg.arc()
-  .outerRadius(radius)
+  .outerRadius(radius);
 
   var pie = d3.layout.pie()
   .sort(null)
@@ -42,7 +42,7 @@ module.exports = function() {
       d.budgets = color.domain().map(function(name) {
         return {name: 'total', amount: +d.values};
       });
-      d.budgets.push({name: 'remainder', amount: cityBudget-d.values})
+      d.budgets.push({name: 'remainder', amount: cityBudget - d.values});
       d.percentage = d.values / cityBudget;
       console.log(JSON.stringify(d, null, 2));
     });
