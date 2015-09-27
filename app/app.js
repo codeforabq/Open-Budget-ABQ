@@ -9,7 +9,6 @@ var color = d3.scale.ordinal()
 
 var arc = d3.svg.arc()
     .outerRadius(radius)
-    // .innerRadius(radius - 30);
 
 var pie = d3.layout.pie()
     .sort(null)
@@ -23,7 +22,6 @@ d3.tsv('data/budget-first-test.tsv', function(error, cityData) {
   color.domain(d3.keys(cityData[0]).filter(function(key) { 
     return key == "TOTAL";
   }));
-  // console.log(JSON.stringify(color.domain()));  
 
   // aggregate by department/ORGANIZATION
   var departmentData = d3.nest()
@@ -58,11 +56,9 @@ d3.tsv('data/budget-first-test.tsv', function(error, cityData) {
       .attr("height", radius * 2)
     .append("g")
       .attr("transform", "translate(" + radius + "," + radius + ")");
-//console.log(pie([2, 4]));
 
   svg.selectAll(".arc")
       .data(function(d) { 
-//        console.log(pie(d.budgets));
         return pie(d.budgets); 
       })
     .enter().append("path")
