@@ -4,7 +4,7 @@
   "description": "This project will display the City of Albuquerque's annual budget in a user friendly web application, allowing citizens to better understand how their tax dollars are being spent and how city services are prioritized.",
   "main": "index.html",
   "scripts": {
-    "build": "browserify app/app.js -o dist/bundle.js"
+    "build": "browserify -t reactify app/app.js -o dist/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,9 @@
     "bootstrap": "^3.3.5",
     "d3": "^3.5.6",
     "jquery": "^2.1.4",
-    "react": "^0.14.0"
+    "lodash": "^3.10.1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
   },
   "browser": {
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
