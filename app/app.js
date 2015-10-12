@@ -12,10 +12,12 @@ var bootstrap = require('bootstrap');
 //   // ...
 // ];
 
+var DATA_PATH = 'app/data/budget-first-test.tsv';
+
 function loadBudgetData() {
   var deferred = $.Deferred();
 
-  d3.tsv('app/data/budget-first-test.tsv', function(error, data) {
+  d3.tsv(DATA_PATH, function(error, data) {
     if (error) throw error;
 
     // resolve the promise and pass the data
@@ -61,21 +63,13 @@ loadBudgetData().done(function(data) {
 
 
 
-  // var svg = d3.select("body").selectAll(".pie")
-  //     .data(departmentData)
-  //   .enter().append("svg")
-  //     .attr("class", "pie")
-  //     .attr("width", radius * 2)
-  //     .attr("height", radius * 2)
-  //     .append("g")
-  //     .attr("transform", "translate(" + radius + "," + radius + ")");
 
   var radius = 74;
 
   var Chart = React.createClass({
     render: function() {
       return (
-        <svg width={this.props.width} height={this.props.height}>{this.props.children}</svg>
+        <svg class="pie" width={this.props.width} height={this.props.height}>{this.props.children}</svg>
       );
     }
   });
@@ -104,7 +98,7 @@ loadBudgetData().done(function(data) {
       });
 
       return (
-        <g transform="translate(480, 250)">{bars}</g>
+        <g transform="translate(" + radius + ", " + radius + ")">{bars}</g>
       );
     }
   });
