@@ -48,40 +48,40 @@ module.exports = function() {
     });
 
     var svg = d3.select("body").selectAll(".pie")
-    .data(departmentData)
+      .data(departmentData)
     .enter().append("svg")
-    .attr("class", "pie")
-    .attr("width", radius * 2)
-    .attr("height", radius * 2)
-    .append("g")
-    .attr("transform", "translate(" + radius + "," + radius + ")");
+      .attr("class", "pie")
+      .attr("width", radius * 2)
+      .attr("height", radius * 2)
+      .append("g")
+      .attr("transform", "translate(" + radius + "," + radius + ")");
 
     svg.selectAll(".arc")
-    .data(function(d) { 
-      return pie(d.budgets); 
-    })
+      .data(function(d) { 
+        return pie(d.budgets); 
+      })
     .enter().append("path")
-    .attr("class", "arc")
-    .attr("d", arc)
-    .style("fill", function(d) { return color(d.data.name); });
+      .attr("class", "arc")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.name); });
 
     // display department name
     svg.append("text")
-    .attr("y", "0")
-    .style("text-anchor", "middle")
-    .text(function(d) { return d.key; });
+      .attr("y", "0")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.key; });
 
     // display percentage of total budget
     svg.append("text")
-    .attr("y", "1em")
-    .style("text-anchor", "middle")
-    .text(function(d) { return (d.percentage*100).toPrecision(3)+'%'; });
+      .attr("y", "1em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return (d.percentage*100).toPrecision(3)+'%'; });
 
     // display total in M.
     svg.append("text")
-    .attr("y", "3em")
-    .style("text-anchor", "middle")
-    .text(function(d) { return (d.values/1000000.0).toPrecision(3) +'M'; });
+      .attr("y", "3em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return (d.values/1000000.0).toPrecision(3) +'M'; });
 
   });
 };
