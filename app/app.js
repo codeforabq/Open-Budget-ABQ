@@ -97,9 +97,9 @@ loadBudgetData().done(function(cityData, cityBudget) {
         )
       });
 
+      var transform = 'translate(' + radius + ', ' + radius + ')';
       return (
-        <g transform="translate(74, 74)">{bars}</g>
-        // <g transform="translate(" + radius + ", " + radius + ")">{bars}</g>
+        <g transform={transform}>{bars}</g>
       );
     }
   });
