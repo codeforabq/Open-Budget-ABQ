@@ -27,22 +27,22 @@ function loadBudgetData() {
     }));
 
     // aggregate by department/ORGANIZATION
-    var departmentData = d3.nest()
+    var cityData = d3.nest()
     .key(function(d) { return d.ORGANIZATION;})
     .rollup(function(d) { 
      return d3.sum(d, function(g) {return g.TOTAL; });
    })
     .entries(cityData);
-    console.log(JSON.stringify(departmentData, null, 2));
+    console.log(JSON.stringify(cityData, null, 2));
 
     // calculate the city's full annual budget
     var cityBudget = 0;
-    departmentData.forEach(function(d) {
+    cityData.forEach(function(d) {
       cityBudget += parseFloat(d.values);
     });
 
     // calculate relative values
-    departmentData.forEach(function(d) {
+    cityData.forEach(function(d) {
       d.budgets = color.domain().map(function(name) {
         return {name: 'total', amount: +d.values};
       });
@@ -52,14 +52,14 @@ function loadBudgetData() {
     });
 
     // resolve the promise and pass the data
-    deferred.resolve(departmentData, cityBudget);
+    deferred.resolve(cityData, cityBudget);
   });  
 
   return deferred.promise();
 }
 
 var App;
-loadBudgetData().done(function(departmentData, cityBudget) {
+loadBudgetData().done(function(cityData, cityBudget) {
 
   var radius = 74;
 
@@ -98,7 +98,7 @@ loadBudgetData().done(function(departmentData, cityBudget) {
       });
 
       return (
-        <g transform="translate(37, 37)">{bars}</g>
+        <g transform="translate(74, 74)">{bars}</g>
         // <g transform="translate(" + radius + ", " + radius + ")">{bars}</g>
       );
     }
@@ -112,21 +112,34 @@ loadBudgetData().done(function(departmentData, cityBudget) {
       };
     },
     render: function() {
-
       return (
         <Chart width={this.props.width} height={this.props.height}>
-          <DataSeries data={this.props.data} width={this.props.width} height={this.props.height}  />
+          <DataSeries data={this.props.data} width={this.props.width} height={this.props.height} />
         </Chart>
       );
     }
   });
-  
-  // var data = [2704659, 4499890, 2159981, 3853788, 14106543, 8819342, 612463]
 
-  departmentData.forEach(function(d) {
-    ReactDOM.render(
-      <PieChart data={d}/>,
-      document.getElementById('container')
-    );
+  var DepartmentView = React.createClass({
+    getInitialState: function() {
+        return {
+            cityData: cityData
+        };
+    },
+    eachDepartement: function(departmentData, i) {
+      return (
+        <PieChart key={i} index={i} data={departmentData}></PieChart>
+      );
+    },
+    render: function() {
+      return (
+        <div className="department">
+          {this.state.cityData.map(this.eachDepartement)}
+        </div> 
+      );
+    }
   });
+  
+  ReactDOM.render(<DepartmentView />, document.getElementById('react-container'));
+
 });
