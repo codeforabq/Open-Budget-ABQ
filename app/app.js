@@ -77,8 +77,13 @@ loadBudgetData().done(function(cityData, cityBudget) {
         .outerRadius(radius)
         .innerRadius(0);
 
+      console.log(this.props);
+      var arcStyle = {
+        fill: color(this.props.name)
+      }
+
       return (
-        <g className="arc">
+        <g className="arc" style={arcStyle}>
           <path d={arc(this.props.data)}></path>
         </g>
       );
@@ -88,18 +93,17 @@ loadBudgetData().done(function(cityData, cityBudget) {
   var DataSeries = React.createClass({
     render: function() {
       var pie = d3.layout.pie();
-      var amounts = _.map(this.props.data.budgets, function(budget) {
-        return budget.amount;
-      });
-      var bars = _.map(pie(amounts), function(point, i) {
+      var budgets = this.props.data.budgets;
+      var amounts = _.map(budgets, function(budget) { return budget.amount; });
+      var sectors = _.map(pie(amounts), function(point, i) {
         return (
-          <Sector data={point} key={i}/>
+          <Sector data={point} key={i} name={budgets[i].name}/>
         )
       });
 
       var transform = 'translate(' + radius + ', ' + radius + ')';
       return (
-        <g transform={transform}>{bars}</g>
+        <g transform={transform}>{sectors}</g>
       );
     }
   });
@@ -112,9 +116,16 @@ loadBudgetData().done(function(cityData, cityBudget) {
       };
     },
     render: function() {
+      var data = this.props.data;
+      var textStyle = {
+        textAnchor: 'middle'
+      };
       return (
         <Chart width={this.props.width} height={this.props.height}>
-          <DataSeries data={this.props.data} width={this.props.width} height={this.props.height} />
+          <DataSeries data={data} width={this.props.width} height={this.props.height} />
+          <text x="7em" y="8em" style={textStyle}>{data.key}</text>
+          <text x="7em" y="12em" style={textStyle}>{(data.percentage*100).toPrecision(3)+'%'}</text>
+          <text x="7em" y="13.5em" style={textStyle}>{(data.values/1000000.0).toPrecision(3) +'M'}</text>
         </Chart>
       );
     }
