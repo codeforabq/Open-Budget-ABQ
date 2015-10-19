@@ -3,8 +3,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var d3 = require('d3');
 var $ = require('jquery');
-var _ = require('lodash');
-var bootstrap = require('bootstrap');
+// var _ = require('lodash');
+// var bootstrap = require('bootstrap');
 
 var dataInit = require('./data-init')($);
 var color = d3.scale.ordinal()
@@ -18,7 +18,7 @@ var dataPath = 'app/data/budget-first-test.tsv';
  */
 dataInit(dataPath, color)
 .done(function(cityData, cityBudget) {
-  var pieChartModule = require('./departement-pieChart.jsx')(d3, React, _, $);
+  var pieChartModule = require('./departement-pieChart.jsx')(d3, React);
   pieChartModule.init({
     color: color,
     radius: 74

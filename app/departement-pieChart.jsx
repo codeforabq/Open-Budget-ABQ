@@ -1,4 +1,4 @@
-module.exports = function(d3, React, _, $) {
+module.exports = function(d3, React) {
 
   var module = {};
 
@@ -37,8 +37,8 @@ module.exports = function(d3, React, _, $) {
     render: function() {
       var pie = d3.layout.pie();
       var budgets = this.props.data.budgets;
-      var amounts = _.map(budgets, function(budget) { return budget.amount; });
-      var sectors = _.map(pie(amounts), function(point, i) {
+      var amounts = budgets.map(function(budget) { return budget.amount; });
+      var sectors = pie(amounts).map(function(point, i) {
         return (
           <Sector data={point} key={i} name={budgets[i].name}/>
         )
