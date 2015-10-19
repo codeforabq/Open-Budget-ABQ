@@ -39,12 +39,12 @@ dataInit(dataPath, color)
     },
     render: function() {
       return (
-        <div className="department">
+        <div className="department-view">
           {this.state.cityData.map(this.eachDepartement)}
         </div> 
       );
     }
   });
-  
+
   ReactDOM.render(<DepartmentView />, document.getElementById('react-container'));
 });
