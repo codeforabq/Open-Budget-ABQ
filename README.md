@@ -9,5 +9,6 @@ Have some input? We are now soliciting [public comments](https://docs.google.com
 * A web server with the [Bower](http://bower.io/) package manager installed
 
 ## Installation
-1. Run "bower install" to fetch the required libraries.
+1. Run "npm install" to fetch the required libraries.
+2. On the command line type: "npm run watch-all" for browserify and css outputs
 
