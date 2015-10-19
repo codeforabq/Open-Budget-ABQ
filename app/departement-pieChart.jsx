@@ -54,7 +54,7 @@ module.exports = function(d3, React, _, $) {
   module.PieChart = function() {
     return React.createClass({
       getDefaultProps: function() {
-        console.log(module.radius);
+        // console.log(module.radius);
         return {
           width: module.radius * 2,
           height: module.radius * 2
