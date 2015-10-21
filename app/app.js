@@ -21,7 +21,7 @@ dataInit(dataPath, color)
   var pieChartModule = require('./departement-pieChart.jsx')(d3, React);
   pieChartModule.init({
     color: color,
-    radius: 74
+    radius: 50
   });
 
   var PieChart = pieChartModule.PieChart();
