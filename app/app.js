@@ -2,11 +2,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var d3 = require('d3');
-var $ = require('jquery');
-// var _ = require('lodash');
-// var bootstrap = require('bootstrap');
+var jqueryDeffered = require('jquery-deferred');
 
-var dataInit = require('./data-init')($);
+var dataInit = require('./data-init')(jqueryDeffered);
 var color = d3.scale.ordinal()
     .range(["#98abc5", "#8a89a6"]);
 var dataPath = 'app/data/budget-first-test.tsv';

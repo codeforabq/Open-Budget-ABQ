@@ -20,19 +20,21 @@ module.exports = function($) {
 
       // calculate the city's full annual budget
       var cityBudget = 0;
-      cityData.forEach(function(d) {
-        cityBudget += parseFloat(d.values);
-      });
+      for (var i = 0, l = cityData.length; i < l; i++) {
+        cityBudget += parseFloat(cityData[i].values);
+      }
 
       // calculate relative values
-      cityData.forEach(function(d) {
+      for (var i = 0, l = cityData.length; i < l; i++) {
+        d = cityData[i];
         d.budgets = color.domain().map(function(name) {
           return {name: 'total', amount: +d.values};
         });
         d.budgets.push({name: 'remainder', amount: cityBudget - d.values});
         d.percentage = d.values / cityBudget;
         // console.log(JSON.stringify(d, null, 2));
-      });
+      }
+        
 
       // resolve the promise and pass the data
       deferred.resolve(cityData, cityBudget);
