@@ -3,6 +3,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var d3 = require('d3');
 var jqueryDeffered = require('jquery-deferred');
+var Button = require('react-bootstrap/lib/Button'); 
+var ButtonGroup = require('react-bootstrap/lib/ButtonGroup');
 
 var dataInit = require('./data-init')(jqueryDeffered);
 var color = d3.scale.ordinal()
@@ -19,7 +21,7 @@ dataInit(dataPath, color)
   var pieChartModule = require('./departement-pieChart.jsx')(d3, React);
   pieChartModule.init({
     color: color,
-    radius: 50
+    radius: 40
   });
 
   var PieChart = pieChartModule.PieChart();
@@ -38,7 +40,14 @@ dataInit(dataPath, color)
     render: function() {
       return (
         <div className="department-view">
-          {this.state.cityData.map(this.eachDepartement)}
+          <ButtonGroup>
+            <Button>Left</Button>
+            <Button>Middle</Button>
+            <Button>Right</Button>
+          </ButtonGroup>
+          <div className="chart-container">
+            {this.state.cityData.map(this.eachDepartement)}
+          </div>
         </div> 
       );
     }
