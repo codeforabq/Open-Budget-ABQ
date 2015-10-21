@@ -1,6 +1,12 @@
 .DS_Store
 .idea
+sftp-config*.json
+
 bower_components
 node_modules
-dist
-sftp-config*.json
+
+dist/*
+!dist/style/
+
+dist/style/*
+!dist/style/lib/
