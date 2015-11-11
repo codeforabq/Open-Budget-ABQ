@@ -6,7 +6,7 @@ var jqueryDeffered = require('jquery-deferred');
 var Button = require('react-bootstrap/lib/Button'); 
 var ButtonGroup = require('react-bootstrap/lib/ButtonGroup');
 
-var dataInit = require('./data-init')(jqueryDeffered);
+var dataInit = require('./data-init')(jqueryDeffered, d3);
 var color = d3.scale.ordinal()
     .range(["#98abc5", "#8a89a6"]);
 var dataPath = 'app/data/budget-first-test.tsv';
