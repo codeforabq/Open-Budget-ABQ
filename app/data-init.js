@@ -1,4 +1,4 @@
-module.exports = function($) {
+module.exports = function($, d3) {
   return function(dataPath, color) {
     var deferred = $.Deferred();
 
