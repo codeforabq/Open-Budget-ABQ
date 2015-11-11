@@ -41,9 +41,9 @@ dataInit(dataPath, color)
       return (
         <div className="department-view">
           <ButtonGroup>
-            <Button>Left</Button>
-            <Button>Middle</Button>
-            <Button>Right</Button>
+            <Button>Goals</Button>
+            <Button>Departments</Button>
+            <Button><i className="icon-search"></i></Button>
           </ButtonGroup>
           <div className="chart-container">
             {this.state.cityData.map(this.eachDepartement)}
