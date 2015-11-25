@@ -5,9 +5,9 @@ This project will display the City of Albuquerque's annual budget in a user frie
 
 Have some input? We are now soliciting [public comments](https://docs.google.com/document/d/1YGKSBixl7ap8Guoc9gV9pOcMHypVItcUoUlfxCoY7Eo/edit?usp=sharing).
 
-## Requirements
-* A web server with the [Bower](http://bower.io/) package manager installed
+## Development & Branching 
 
-## Installation
-1. Run "bower install" to fetch the required libraries.
+Do not attempt to use the *master* branch - it only contains early experimental code. All development is happening on the [*dev*](https://github.com/codeforabq/Open-Budget-ABQ/tree/dev) branch and feature branches. Feature branches will be merged into *dev*. We will only merge into *master* when we are ready to release a stable version.
+
+We welcome contributions from anyone at any time, either in code or in the issue queue. If you fork our project and make improvements, we encourage you to submit a pull request so we can consider incorporating your improvements.
 
