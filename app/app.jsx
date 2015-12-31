@@ -1,6 +1,12 @@
+"use strict";
+
 // require dependencies
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react'
+import { render } from 'react-dom'
+import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
+
+// var React = require('react');
+// var ReactDOM = require('react-dom');
 var d3 = require('d3');
 var jqueryDeffered = require('jquery-deferred');
 var Button = require('react-bootstrap/lib/Button'); 
@@ -26,7 +32,7 @@ dataInit(dataPath, color)
 
   var PieChart = pieChartModule.PieChart();
 
-  var DepartmentView = React.createClass({
+  var Departments = React.createClass({
     getInitialState: function() {
         return {
             cityData: cityData
@@ -39,12 +45,7 @@ dataInit(dataPath, color)
     },
     render: function() {
       return (
-        <div className="department-view">
-          <ButtonGroup>
-            <Button>Goals</Button>
-            <Button>Departments</Button>
-            <Button><i className="icon-search"></i></Button>
-          </ButtonGroup>
+        <div className="departments">
           <div className="chart-container">
             {this.state.cityData.map(this.eachDepartement)}
           </div>
@@ -53,5 +54,41 @@ dataInit(dataPath, color)
     }
   });
 
-  ReactDOM.render(<DepartmentView />, document.getElementById('react-container'));
+  // ReactDOM.render(<DepartmentView />, document.getElementById('react-container'));
+
+  class Goals extends React.Component {
+    render() {
+      return (
+        <div>
+        </div>
+      )
+    }
+  }
+
+  class App extends React.Component {
+    render() {
+      return (
+        <div>
+          <ButtonGroup>
+            <Button><Link to="/goals">Goals</Link></Button>
+            <Button><Link to="/departments">Departments</Link></Button>
+            <Button><i className="icon-search"></i></Button>
+          </ButtonGroup>
+          {this.props.children}
+        </div>
+      )
+    }
+  }
+
+  render((
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Departments} />
+        <Route path="goals" component={Goals}>
+        </Route>
+        <Route path="departments" component={Departments}>
+        </Route>
+      </Route>
+    </Router>
+  ), document.getElementById('react-container'))
 });

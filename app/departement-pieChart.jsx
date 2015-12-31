@@ -7,7 +7,7 @@ module.exports = function(d3, React) {
     this.radius = init.radius;
   };
 
-  Chart = React.createClass({
+  var Chart = React.createClass({
     render: function() {
       return (
         <svg className="pie" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>

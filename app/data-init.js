@@ -26,7 +26,7 @@ module.exports = function($, d3) {
 
       // calculate relative values
       for (var i = 0, l = cityData.length; i < l; i++) {
-        d = cityData[i];
+        var d = cityData[i];
         d.budgets = color.domain().map(function(name) {
           return {name: 'total', amount: +d.values};
         });
