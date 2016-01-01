@@ -91,7 +91,7 @@ dataInit(dataPath, color)
           <ButtonGroup>
             <Button onClick={this.navToGoals}>Goals</Button>
             <Button onClick={this.navToDepartements}>Departments</Button>
-            <Button><i className="icon-search">Search</i></Button>
+            <Button><i className="fa fa-search"></i></Button>
           </ButtonGroup>
           {this.props.children}
         </div>
