@@ -3,7 +3,18 @@
 // require dependencies
 import React from 'react'
 import { render } from 'react-dom'
-import { history, Router, Route, Link, IndexRoute } from 'react-router'
+import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
+// import createHistory from 'history/lib/createHashHistory'
+
+// Use _key instead of _k.
+// let history = createHistory({
+//   queryKey: '_key'
+// })
+
+// Opt-out of persistent state, not recommended.
+// let history = createHistory({
+//   queryKey: false
+// })
 
 // var React = require('react');
 // var ReactDOM = require('react-dom');
@@ -66,13 +77,21 @@ dataInit(dataPath, color)
   }
 
   class App extends React.Component {
+    navToGoals() {
+      window.location.href = window.location.origin + '/goals';
+    }
+
+    navToDepartements() {
+      window.location.href = window.location.origin + '/departments';
+    }
+
     render() {
       return (
         <div className="top-menu">
           <ButtonGroup>
-            <Button><Link to="/goals">Goals</Link></Button>
-            <Button><Link to="/departments">Departments</Link></Button>
-            <Button><i className="icon-search"></i></Button>
+            <Button onClick={this.navToGoals}>Goals</Button>
+            <Button onClick={this.navToDepartements}>Departments</Button>
+            <Button><i className="icon-search">Search</i></Button>
           </ButtonGroup>
           {this.props.children}
         </div>
@@ -81,11 +100,11 @@ dataInit(dataPath, color)
   }
 
   render((
-    <Router history={history}>
+    <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Departments} />
-        <Route path="/goals" component={Goals} />
-        <Route path="/departments" component={Departments} />
+        <Route path="goals" component={Goals} />
+        <Route path="departments" component={Departments} />
       </Route>
     </Router>
   ), document.getElementById('react-container'))

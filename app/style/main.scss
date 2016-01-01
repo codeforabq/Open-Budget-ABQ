@@ -17,6 +17,8 @@ body {
 }
 
 .pie {
+  height: 240px;
+  
   @include gallery(8);
 
   @media (min-width: 768px) {

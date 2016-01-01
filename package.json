@@ -42,7 +42,8 @@
     "jquery-deferred": "^0.3.0",
     "react": "^0.14.0",
     "react-bootstrap": "^0.27.2",
-    "react-dom": "^0.14.0"
+    "react-dom": "^0.14.0",
+    "react-router": "^2.0.0-rc4"
   },
   "browser": {
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
