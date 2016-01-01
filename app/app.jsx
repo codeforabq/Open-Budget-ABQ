@@ -3,7 +3,7 @@
 // require dependencies
 import React from 'react'
 import { render } from 'react-dom'
-import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
+import { history, Router, Route, Link, IndexRoute } from 'react-router'
 
 // var React = require('react');
 // var ReactDOM = require('react-dom');
@@ -68,7 +68,7 @@ dataInit(dataPath, color)
   class App extends React.Component {
     render() {
       return (
-        <div>
+        <div className="top-menu">
           <ButtonGroup>
             <Button><Link to="/goals">Goals</Link></Button>
             <Button><Link to="/departments">Departments</Link></Button>
@@ -81,13 +81,11 @@ dataInit(dataPath, color)
   }
 
   render((
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Departments} />
-        <Route path="goals" component={Goals}>
-        </Route>
-        <Route path="departments" component={Departments}>
-        </Route>
+        <Route path="/goals" component={Goals} />
+        <Route path="/departments" component={Departments} />
       </Route>
     </Router>
   ), document.getElementById('react-container'))
