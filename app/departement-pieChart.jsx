@@ -68,9 +68,9 @@ module.exports = function(d3, React) {
         return (
           <Chart width={this.props.width} height={this.props.height}>
             <DataSeries data={data} width={this.props.width} height={this.props.height} />
-            <text x="8em" y="10em" style={textStyle}>{data.key}</text>
-            <text x="8em" y="13em" style={textStyle}>{(data.percentage*100).toPrecision(3)+'%'}</text>
-            <text x="8em" y="14.5em" style={textStyle}>{(data.values/1000000.0).toPrecision(3) +'M'}</text>
+            <text x="6em" y="15em" style={textStyle}>{data.key}</text>
+            <text x="6em" y="17em" style={textStyle}>{(data.percentage*100).toPrecision(3)+'%'}</text>
+            <text x="6em" y="18em" style={textStyle}>{(data.values/1000000.0).toPrecision(3) +'M'}</text>
           </Chart>
         );
       }
