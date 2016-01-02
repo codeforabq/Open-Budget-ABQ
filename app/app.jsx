@@ -102,7 +102,7 @@ dataInit(dataPath, color)
   render((
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Departments} />
+        <IndexRoute component={Goals} />
         <Route path="goals" component={Goals} />
         <Route path="departments" component={Departments} />
       </Route>
