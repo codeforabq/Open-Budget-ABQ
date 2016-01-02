@@ -73,9 +73,9 @@ gulp.task('watch-css', ['build-css'], watchCss);
 gulp.task('build-min-css', ['build-css'], buildMinCss);
 gulp.task('clean', ['build-min-css', 'build-min-js'], cleanDist);
 
-gulp.task('default', ['watch-css']);
 gulp.task('watch-all', ['watch-js', 'watch-css']);
-gulp.task('build-dev', ['build-css', 'build-js']);
-gulp.task('build-prod', ['build-css', 'build-min-css', 'build-js', 'build-min-js', 'clean']);
+gulp.task('build-all', ['build-css', 'build-js']);
+gulp.task('build-min-all', ['build-min-css', 'build-min-js', 'clean']);
 
+gulp.task('default', ['watch-all']);
 

@@ -52,8 +52,6 @@ dataInit(dataPath, color)
     }
   });
 
-  // ReactDOM.render(<DepartmentView />, document.getElementById('react-container'));
-
   class Goals extends React.Component {
     render() {
       return (

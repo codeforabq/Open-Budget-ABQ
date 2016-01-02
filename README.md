@@ -19,17 +19,24 @@ All development is happening on the *dev* branch and feature branches. Feature b
 
 ## Installation
 1. Run "npm install" to fetch the required libraries.
-2. On the command line type: "npm run watch-all" for browserify and css outputs
+2. On the command line type: "gulp" for browserify and css outputs (same than: "gulp watch-all")
 
 ## Options
 
 Watching:
-* "npm run watch-css" to watch only the scss files and compile them into css
-* "npm run watch-js" to watch only the js files and create the bundle.js automatically
+* "gulp watch-css" to watch only the scss files and compile them into css
+* "gulp watch-js" to watch only the js files and create the bundle.js automatically
+* "gulp watch-all" to watch the scss (sass) files and the js files
 
 Compiling: the watching calls these commands automatically. We list them just to be exhaustive:
-* "npm run build-css" compile the scss (sass) files to css files
-* "npm run build-js" compile the js files to bundle.js
-* "npm run build-all" compile the scss (sass) files to css files and the js files to bundle.js
+* "gulp build-css" compile the scss (sass) files to css files
+* "gulp build-js" compile the js files to bundle.js
+* "gulp build-all" compile the scss (sass) files to css files and the js files to bundle.js
+
+Minification and cleaning:
+* "gulp build-min-css" build main.min.css, minified css version of main.css file
+* "gulp build-min-js" build bundle.min.js, minified js version of bundle.js file
+* "gulp clean" delete main.css and bundle.js files
+* "gulp build-min-all" calls build-min-css, build-min-js and clean
 
 If you get a "no such file or directory" error when building the js, try building the css first, which will complete your directory structure.
