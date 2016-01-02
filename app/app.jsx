@@ -4,20 +4,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
-// import createHistory from 'history/lib/createHashHistory'
 
-// Use _key instead of _k.
-// let history = createHistory({
-//   queryKey: '_key'
-// })
-
-// Opt-out of persistent state, not recommended.
-// let history = createHistory({
-//   queryKey: false
-// })
-
-// var React = require('react');
-// var ReactDOM = require('react-dom');
 var d3 = require('d3');
 var jqueryDeffered = require('jquery-deferred');
 var Button = require('react-bootstrap/lib/Button'); 

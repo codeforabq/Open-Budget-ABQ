@@ -28,10 +28,6 @@ function buildMinJs() {
         .pipe(gulp.dest('./dist/'))
 }
 
-function watchJs() {
-	gulp.watch('*.jsx', ['build-js']);
-}
-
 function buildCss() {
 	var sassStream,
       cssStream;
@@ -56,6 +52,10 @@ function buildMinCss() {
         .pipe(gulp.dest('./dist/style/'))
 }
 
+function watchJs() {
+	gulp.watch(['./app/**/*.js', './app/**/*.jsx'], ['build-js']);
+}
+
 function watchCss() {
 	gulp.watch('./app/**/*.scss', ['build-css']);
 }
@@ -74,6 +74,7 @@ gulp.task('build-min-css', ['build-css'], buildMinCss);
 gulp.task('clean', ['build-min-css', 'build-min-js'], cleanDist);
 
 gulp.task('default', ['watch-css']);
+gulp.task('watch-all', ['watch-js', 'watch-css']);
 gulp.task('build-dev', ['build-css', 'build-js']);
 gulp.task('build-prod', ['build-css', 'build-min-css', 'build-js', 'build-min-js', 'clean']);
 
