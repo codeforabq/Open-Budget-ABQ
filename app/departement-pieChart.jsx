@@ -10,7 +10,7 @@ module.exports = function(d3, React) {
   var Chart = React.createClass({
     render: function() {
       return (
-        <svg className="pie" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
+        <svg className="pie" viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
       );
     }
   });
@@ -62,15 +62,12 @@ module.exports = function(d3, React) {
       },
       render: function() {
         var data = this.props.data;
-        var textStyle = {
-          textAnchor: 'middle'
-        };
         return (
           <Chart width={this.props.width} height={this.props.height}>
             <DataSeries data={data} width={this.props.width} height={this.props.height} />
-            <text x="6em" y="15em" style={textStyle}>{data.key}</text>
-            <text x="6em" y="17em" style={textStyle}>{(data.percentage*100).toPrecision(3)+'%'}</text>
-            <text x="6em" y="18em" style={textStyle}>{(data.values/1000000.0).toPrecision(3) +'M'}</text>
+            <text x="6.5em" y="15em" className="text-middle">{data.key.replace(/Department|Dept|DP/gi, '')}</text>
+            <text x="6.5em" y="9em" className="text-middle on-chart">{(data.percentage*100).toPrecision(3)+'%'}</text>
+            <text x="6.5em" y="11em" className="text-middle on-chart">{(data.values/1000000.0).toPrecision(3) +'M'}</text>
           </Chart>
         );
       }

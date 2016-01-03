@@ -17,15 +17,14 @@ body {
 }
 
 .pie {
-  height: 240px;
-  
   @include gallery(8);
 
-  @media (min-width: 768px) {
+  @media (min-width: 650px) {
     @include gallery(4);
   }
 
-  margin: gutter() * 2;
+  margin-top: gutter() * 2;
+  margin-bottom: gutter() * 2.8;
 }
 
 text {
@@ -34,8 +33,24 @@ text {
 }
 
 #react-container {
+  display: inline-block;
+  margin-bottom: 30px;
+
   .top-menu .btn-group {
     margin-top: 10px;
     margin-bottom: 20px;
   }
 }
+
+svg:not(:root) {
+  overflow: inherit;
+}
+
+.text-middle {
+  text-anchor: middle;
+}
+
+.on-chart {
+  fill: white;
+}
+
