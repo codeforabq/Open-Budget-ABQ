@@ -20,6 +20,7 @@ All development is happening on the *dev* branch and feature branches. Feature b
 ## Installation
 1. Run "npm install" to fetch the required libraries.
 2. On the command line type: "gulp" for browserify and css outputs (same than: "gulp watch-all")
+3. npm start to launch a local server or use any other local server
 
 ## Options
 
