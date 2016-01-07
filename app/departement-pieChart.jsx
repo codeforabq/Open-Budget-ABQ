@@ -21,23 +21,43 @@ module.exports = function(d3, React) {
     }
   }
 
-  var Sector = React.createClass({
-    render: function() {
+  class Sector extends React.Component {
+
+    constructor() {
+      super();
+      this.state = {
+        hovered: false
+      }
+    }
+
+    setFilter(filter) {
+      console.log('test');
+      this.setState({hovered: filter})
+    }
+
+    isHovered() {
+      console.log('hover:'+this.state.hovered);
+      return 'arc ' + (this.state.hovered ? 'sector-hovered' : '');
+    }
+
+    render() {
       var arc = d3.svg.arc()
         .outerRadius(module.radius)
         .innerRadius(0);
 
       var arcStyle = {
-        fill: module.color(this.props.name)
+        fill: module.color(this.props.name),
       }
 
       return (
-        <g className="arc" style={arcStyle}>
+        <g className={this.isHovered()} style={arcStyle} 
+        onMouseEnter={this.setFilter.bind(this, true)} 
+        onMouseLeave={this.setFilter.bind(this, false)}>
           <path d={arc(this.props.data)}></path>
         </g>
       );
     }
-  });
+  };
 
   var DataSeries = React.createClass({
     render: function() {
