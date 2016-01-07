@@ -7,13 +7,19 @@ module.exports = function(d3, React) {
     this.radius = init.radius;
   };
 
-  var Chart = React.createClass({
-    render: function() {
+  class Chart extends React.Component {
+    showDepartmentDetails(event) {
+      var departmentSlug = this.props.departmentName.toLowerCase().trim().replace(/\s/g, '-');
+      window.location.href = window.location.origin + '/departments/' + departmentSlug
+    }
+
+    render() {
+      var departmentName = this.props.departmentName;
       return (
-        <svg className="pie" viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
+        <svg onClick={this.showDepartmentDetails.bind(this)} className="pie" viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
       );
     }
-  });
+  }
 
   var Sector = React.createClass({
     render: function() {
@@ -62,10 +68,11 @@ module.exports = function(d3, React) {
       },
       render: function() {
         var data = this.props.data;
+        var departmentName = data.key.replace(/Department|Dept|DP/gi, '')
         return (
-          <Chart width={this.props.width} height={this.props.height}>
+          <Chart width={this.props.width} height={this.props.height} departmentName={departmentName}>
             <DataSeries data={data} width={this.props.width} height={this.props.height} />
-            <text x="6.5em" y="15em" className="text-middle">{data.key.replace(/Department|Dept|DP/gi, '')}</text>
+            <text x="6.5em" y="15em" className="text-middle">{departmentName}</text>
             <text x="6.5em" y="9em" className="text-middle on-chart">{(data.percentage*100).toPrecision(3)+'%'}</text>
             <text x="6.5em" y="11em" className="text-middle on-chart">{(data.values/1000000.0).toPrecision(3) +'M'}</text>
           </Chart>

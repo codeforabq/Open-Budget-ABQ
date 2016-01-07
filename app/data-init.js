@@ -35,7 +35,7 @@ module.exports = function($, d3) {
         // console.log(JSON.stringify(d, null, 2));
       }
         
-
+      console.log(JSON.stringify(cityData, null, 2));
       // resolve the promise and pass the data
       deferred.resolve(cityData, cityBudget);
     });  

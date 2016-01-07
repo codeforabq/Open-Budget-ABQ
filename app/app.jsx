@@ -20,9 +20,10 @@ var dataPath = 'app/data/budget-first-test.tsv';
  * @param  object cityData   the data parsed and processed
  * @param  object cityBudget the budget of the city
  */
-dataInit(dataPath, color)
-.done(function(cityData, cityBudget) {
+dataInit(dataPath, color).done(function(cityData, cityBudget) {
+
   var pieChartModule = require('./departement-pieChart.jsx')(d3, React);
+
   pieChartModule.init({
     color: color,
     radius: 40
@@ -52,6 +53,20 @@ dataInit(dataPath, color)
     }
   });
 
+  class Department extends React.Component {
+
+    render() {
+      console.log('Department');
+      // const { userID } = this.props.params
+
+      return (
+        <div className="department">
+          <h1>Department</h1>
+        </div>
+      );
+    }
+  }
+
   class Goals extends React.Component {
     render() {
       return (
@@ -62,11 +77,11 @@ dataInit(dataPath, color)
   }
 
   class App extends React.Component {
-    navToGoals() {
+    loadGoalsView() {
       window.location.href = window.location.origin + '/goals';
     }
 
-    navToDepartements() {
+    loadDepartmentsView() {
       window.location.href = window.location.origin + '/departments';
     }
 
@@ -74,8 +89,8 @@ dataInit(dataPath, color)
       return (
         <div className="top-menu">
           <ButtonGroup>
-            <Button onClick={this.navToGoals}>Goals</Button>
-            <Button onClick={this.navToDepartements}>Departments</Button>
+            <Button onClick={this.loadGoalsView}>Goals</Button>
+            <Button onClick={this.loadDepartmentsView}>Departments</Button>
             <Button><i className="fa fa-search"></i></Button>
           </ButtonGroup>
           {this.props.children}
@@ -89,8 +104,11 @@ dataInit(dataPath, color)
       <Route path="/" component={App}>
         <IndexRoute component={Goals} />
         <Route path="goals" component={Goals} />
-        <Route path="departments" component={Departments} />
+        <Route path="departments" component={Departments} >
+          <Route path="/:departmentID" component={Department} />
+        </Route>
       </Route>
     </Router>
   ), document.getElementById('react-container'))
+
 });
