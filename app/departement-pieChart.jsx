@@ -16,13 +16,12 @@ module.exports = function(d3, React) {
     render() {
       var departmentName = this.props.departmentName;
       return (
-        <svg onClick={this.showDepartmentDetails.bind(this)} className="pie" viewBox="0 0 78 78" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
+        <svg onClick={this.showDepartmentDetails.bind(this)} className="pie" viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
       );
     }
   }
 
   class Sector extends React.Component {
-
     constructor() {
       super();
       this.state = {

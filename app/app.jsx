@@ -26,7 +26,7 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
 
   pieChartModule.init({
     color: color,
-    radius: 34
+    radius: 40
   });
 
   var PieChart = pieChartModule.PieChart();
@@ -54,10 +54,9 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
   });
 
   class Department extends React.Component {
-
     render() {
       console.log('Department');
-      // const { userID } = this.props.params
+      const { departmentID } = this.props.params
 
       return (
         <div className="department">

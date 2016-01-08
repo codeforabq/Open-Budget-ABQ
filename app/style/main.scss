@@ -71,17 +71,26 @@ $susy: (
 $susy: (
   container: 80%,
   columns: 12,  // The number of columns in your grid
-  gutters: 1, // The size of a gutter in relation to a single column
+  gutter-position: inside,
+  gutters: 50, // The size of a gutter in relation to a single column
 );
 
 .content-container {
   @include container;
 
+  .pie:nth-child(odd) {
+    margin-right: span(1);
+  }
+
+  .pie:nth-child(even) {
+    margin-left: span(1);
+  }
+
   .pie {
-    @include gallery(6);
+    width: span(5);
 
     @media (min-width: 650px) {
-      @include gallery(3);
+      width: span(3);
     }
 
     margin-top: gutter() * 2;
