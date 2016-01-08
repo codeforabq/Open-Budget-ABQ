@@ -56,8 +56,8 @@ module.exports = function(d3, React) {
     }
   };
 
-  var DataSeries = React.createClass({
-    render: function() {
+  class DataSeries extends React.Component {
+    render() {
       var pie = d3.layout.pie();
       var budgets = this.props.data.budgets;
       var amounts = budgets.map(function(budget) { return budget.amount; });
@@ -72,8 +72,9 @@ module.exports = function(d3, React) {
         <g transform={transform}>{sectors}</g>
       );
     }
-  });
+  }
 
+  // module.PieChart = function() {
   module.PieChart = function() {
     return React.createClass({
       getDefaultProps: function() {
@@ -98,5 +99,6 @@ module.exports = function(d3, React) {
     });
   };
 
+  // module.PieChart = PieChart;
   return module;
 };

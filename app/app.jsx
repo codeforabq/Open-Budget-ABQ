@@ -21,7 +21,6 @@ var dataPath = 'app/data/budget-first-test.tsv';
  * @param  object cityBudget the budget of the city
  */
 dataInit(dataPath, color).done(function(cityData, cityBudget) {
-
   var pieChartModule = require('./departement-pieChart.jsx')(d3, React);
 
   pieChartModule.init({
@@ -31,18 +30,21 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
 
   var PieChart = pieChartModule.PieChart();
 
-  var Departments = React.createClass({
-    getInitialState: function() {
-        return {
-            cityData: cityData
-        };
-    },
-    eachDepartement: function(departmentData, i) {
+  class Departments extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        cityData: cityData
+      };
+    }
+
+    eachDepartement(departmentData, i) {
       return (
         <PieChart key={i} index={i} data={departmentData}></PieChart>
       );
-    },
-    render: function() {
+    }
+
+    render() {
       return (
         <div className="departments">
           <div className="chart-container">
@@ -51,7 +53,7 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
         </div> 
       );
     }
-  });
+  }
 
   class Department extends React.Component {
     render() {
@@ -75,6 +77,35 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
     }
   }
 
+  class Hamburger extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        active: false
+      }
+    }
+
+    setFilter(filter) {
+      this.setState({active: filter})
+    }
+
+    isActive() {
+      return 'menu-items ' + (this.state.active ? 'active' : '');
+    }
+
+    render() {
+      return (
+        <div className="Hamburger-menu-wrapper">
+          <div className='hamburger-menu' onClick={this.setFilter.bind(this, !this.state.active)}><i className="fa fa-bars"></i></div>
+          <ul className={this.isActive()}>
+            <li><Link>Pie charts</Link></li>
+            <li><Link>Bar charts</Link></li>
+          </ul>
+        </div>
+      );
+    }
+  }
+
   class TopMenu extends React.Component {
     loadGoalsView() {
       window.location.href = window.location.origin + '/goals';
@@ -88,7 +119,7 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
       return (
         <div className="top-container">
           <h1>ABQ Open Budget</h1>
-          <div className="hamburger-menu"><i className="fa fa-bars"></i></div>
+          <Hamburger/>
           <ButtonGroup>
             <Button className="budget-type" onClick={this.loadGoalsView}>Goals</Button>
             <Button className="budget-type" onClick={this.loadDepartmentsView}>Departments</Button>
@@ -100,7 +131,6 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
   }
 
   class App extends React.Component {
-
     render() {
       return (
         <div className="app">
