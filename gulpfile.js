@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     nano = require('gulp-cssnano'),
     rimraf = require('gulp-rimraf'),
-    ignore = require('gulp-ignore');
+    ignore = require('gulp-ignore'); // TODO: not usedå
 
 function buildJs() {
 	return browserify({entries: ['app/app.jsx', 'app/data-init.js'], extensions: ['.jsx'], debug: true})
@@ -75,7 +75,7 @@ gulp.task('clean', ['build-min-css', 'build-min-js'], cleanDist);
 
 gulp.task('watch-all', ['watch-js', 'watch-css']);
 gulp.task('build-all', ['build-css', 'build-js']);
-gulp.task('build-min-all', ['build-min-css', 'build-min-js', 'clean']);
+gulp.task('build-min-all', ['clean']);
 
 gulp.task('default', ['watch-all']);
 

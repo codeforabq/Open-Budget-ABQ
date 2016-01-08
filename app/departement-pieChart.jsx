@@ -16,7 +16,7 @@ module.exports = function(d3, React) {
     render() {
       var departmentName = this.props.departmentName;
       return (
-        <svg onClick={this.showDepartmentDetails.bind(this)} className="pie" viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
+        <svg onClick={this.showDepartmentDetails.bind(this)} className="pie" viewBox="0 0 78 78" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
       );
     }
   }
@@ -31,12 +31,10 @@ module.exports = function(d3, React) {
     }
 
     setFilter(filter) {
-      console.log('test');
       this.setState({hovered: filter})
     }
 
     isHovered() {
-      console.log('hover:'+this.state.hovered);
       return 'arc ' + (this.state.hovered ? 'sector-hovered' : '');
     }
 

@@ -26,7 +26,7 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
 
   pieChartModule.init({
     color: color,
-    radius: 40
+    radius: 34
   });
 
   var PieChart = pieChartModule.PieChart();
@@ -76,7 +76,7 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
     }
   }
 
-  class App extends React.Component {
+  class TopMenu extends React.Component {
     loadGoalsView() {
       window.location.href = window.location.origin + '/goals';
     }
@@ -87,13 +87,26 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
 
     render() {
       return (
-        <div className="top-menu">
+        <div className="top-container">
+          <h1>ABQ Open Budget</h1>
+          <div className="hamburger-menu"><i className="fa fa-bars"></i></div>
           <ButtonGroup>
-            <Button onClick={this.loadGoalsView}>Goals</Button>
-            <Button onClick={this.loadDepartmentsView}>Departments</Button>
-            <Button><i className="fa fa-search"></i></Button>
+            <Button className="budget-type" onClick={this.loadGoalsView}>Goals</Button>
+            <Button className="budget-type" onClick={this.loadDepartmentsView}>Departments</Button>
+            <Button className="search"><i className="fa fa-search"></i></Button>
           </ButtonGroup>
-          {this.props.children}
+        </div>
+      )
+    }
+  }
+
+  class App extends React.Component {
+
+    render() {
+      return (
+        <div className="app">
+          <TopMenu/>
+          <div className="content-container">{this.props.children}</div>
         </div>
       )
     }
