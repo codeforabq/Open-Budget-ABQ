@@ -86,13 +86,16 @@ module.exports = function(d3, React) {
       },
       render: function() {
         var data = this.props.data;
-        var departmentName = data.key.replace(/Department|Dept|DP/gi, '')
+        var departmentName = data.key.replace(/Department|Dept|DP/gi, '').split(/\s{1}/),
+            departmentName1 = departmentName[0],
+            departmentName2 = departmentName.splice(1).join(' ');
         return (
           <Chart width={this.props.width} height={this.props.height} departmentName={departmentName}>
             <DataSeries data={data} width={this.props.width} height={this.props.height} />
-            <text x="6.5em" y="15em" className="text-middle">{departmentName}</text>
-            <text x="6.5em" y="9em" className="text-middle on-chart">{(data.percentage*100).toPrecision(3)+'%'}</text>
-            <text x="6.5em" y="11em" className="text-middle on-chart">{(data.values/1000000.0).toPrecision(3) +'M'}</text>
+            <text x={module.radius} y={this.props.height+15} className="text-middle">{departmentName1}</text>
+            <text x={module.radius} y={this.props.height+30} className="text-middle">{departmentName2}</text>
+            <text x={module.radius} y={this.props.height-25} className="text-middle on-chart">{(data.percentage*100).toPrecision(3)+'%'}</text>
+            <text x={module.radius} y={this.props.height-10} className="text-middle on-chart">{(data.values/1000000.0).toPrecision(3) +'M'}</text>
           </Chart>
         );
       }

@@ -73,6 +73,7 @@ $susy: (
     display: none;
     clear: both;
     padding: 0;
+    float: right;
 
     &.active {
       display: block
@@ -110,7 +111,7 @@ $susy: (
     }
 
     margin-top: gutter() * 2;
-    margin-bottom: gutter() * 2.8;
+    margin-bottom: gutter() * 4;
 
     &:hover {
       cursor: pointer;
@@ -124,7 +125,8 @@ $susy: (
 
 text {
   text-anchor: middle;
-  font-size: 0.6em;
+  font-size: 1em;
+  fill: $main-blue;
 }
 
 svg:not(:root) {
