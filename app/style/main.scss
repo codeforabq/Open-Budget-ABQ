@@ -12,13 +12,19 @@ h1 {
 }
 
 #react-container {
-  display: inline-block;
   margin-bottom: 30px;
 
   .top-menu .btn-group {
     margin-top: 10px;
     margin-bottom: 20px;
   }
+}
+
+@mixin mainContainer($width, $maxWidth) {
+  width: $width;
+  max-width: $maxWidth;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 $susy: (
@@ -28,7 +34,8 @@ $susy: (
 );
 
 .top-container {
-  @include container;
+  // @include container; // TODO ask about how to have a dynamic container width and set its max width on stack
+  @include mainContainer(86%, 600px);
   
   button {
     border-color: $main-blue;
@@ -44,15 +51,13 @@ $susy: (
     }
   }
 
-  @media (max-width: 650px) {
-    .btn-group {
-      width: 100%;
-      button.budget-type {
-        width: span(5);
-      }
-      button.search {
-        width: span(2);
-      }
+  .btn-group {
+    width: 100%;
+    button.budget-type {
+      width: span(5);
+    }
+    button.search {
+      width: span(2);
     }
   }
 
@@ -87,31 +92,39 @@ $susy: (
 
 $susy: (
   container: 80%,
-  columns: 12,  // The number of columns in your grid
+  columns: 24,  // The number of columns in your grid
   gutter-position: inside,
-  gutters: 50, // The size of a gutter in relation to a single column
+  gutters: 10, // The size of a gutter in relation to a single column
 );
 
 .content-container {
-  @include container;
-
-  .pie:nth-child(odd) {
-    margin-right: span(1);
-  }
-
-  .pie:nth-child(even) {
-    margin-left: span(1);
-  }
+  @include mainContainer(80%, 600px);
 
   .pie {
-    width: span(5);
+    width: span(10);
 
-    @media (min-width: 650px) {
-      width: span(3);
+    margin-top: gutter() * 4;
+    margin-bottom: gutter() * 8;
+
+    @media (max-width: 649px) {
+      &:nth-child(odd) {
+        margin-right: span(2);
+      }
+
+      &:nth-child(even) {
+        margin-left: span(2);
+      }
     }
 
-    margin-top: gutter() * 2;
-    margin-bottom: gutter() * 4;
+    @media (min-width: 650px) {
+      width: span(5);
+      
+      margin-top: gutter() * 2;
+      margin-bottom: gutter() * 4;
+
+      margin-right: span(0.5);
+      margin-left: span(0.5);
+    }
 
     &:hover {
       cursor: pointer;
