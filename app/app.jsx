@@ -3,7 +3,7 @@
 // require dependencies
 import React from 'react'
 import { render } from 'react-dom'
-import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
+import { browserHistory, Router, Route, Link, IndexRoute, Redirect } from 'react-router'
 
 var d3 = require('d3');
 var jqueryDeffered = require('jquery-deferred');
@@ -98,8 +98,8 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
         <div className="Hamburger-menu-wrapper">
           <div className='hamburger-menu' onClick={this.setFilter.bind(this, !this.state.active)}><i className="fa fa-bars"></i></div>
           <ul className={this.isActive()}>
-            <li><Link>Pie charts</Link></li>
-            <li><Link>Bar charts</Link></li>
+            <li><Link to="/">Pie charts</Link></li>
+            <li><Link to="bar-charts">Bar charts</Link></li>
           </ul>
         </div>
       );
@@ -146,9 +146,10 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
       <Route path="/" component={App}>
         <IndexRoute component={Goals} />
         <Route path="goals" component={Goals} />
-        <Route path="departments" component={Departments} >
-          <Route path="/:departmentID" component={Department} />
-        </Route>
+        <Route path="departments" component={Departments} />
+        <Redirect from="departments/" to="departments" />
+        <Route path="department/:departmentID" component={Department} />
+        <Redirect from="departments/:departmentID" to="department/:departmentID" />
       </Route>
     </Router>
   ), document.getElementById('react-container'))

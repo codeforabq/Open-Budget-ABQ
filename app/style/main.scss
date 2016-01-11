@@ -11,6 +11,10 @@ h1 {
   font-size: 1.7em;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 #react-container {
   margin-bottom: 30px;
 
@@ -34,7 +38,8 @@ $susy: (
 );
 
 .top-container {
-  // @include container; // TODO ask about how to have a dynamic container width and set its max width on stack
+  // TODO how to change susy container width within media queries and set its max-width?
+  // mainContainer is the workaround for now
   @include mainContainer(86%, 600px);
   
   button {
@@ -92,9 +97,9 @@ $susy: (
 
 $susy: (
   container: 80%,
-  columns: 24,  // The number of columns in your grid
+  columns: 24, 
   gutter-position: inside,
-  gutters: 10, // The size of a gutter in relation to a single column
+  gutters: 10,
 );
 
 .content-container {
