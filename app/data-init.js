@@ -33,9 +33,10 @@ module.exports = function($, d3) {
         d.budgets.push({name: 'remainder', amount: cityBudget - d.values});
         d.percentage = d.values / cityBudget;
         // console.log(JSON.stringify(d, null, 2));
+        delete d.values;
       }
         
-      // console.log(JSON.stringify(cityData, null, 2));
+      console.log(JSON.stringify(cityData, null, 2));
       // resolve the promise and pass the data
       deferred.resolve(cityData, cityBudget);
     });  
