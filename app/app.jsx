@@ -13,7 +13,7 @@ var ButtonGroup = require('react-bootstrap/lib/ButtonGroup');
 var dataInit = require('./data-init')(jqueryDeffered, d3);
 var color = d3.scale.ordinal()
     .range(["#98abc5", "#8a89a6"]);
-var dataPath = 'app/data/budget-first-test.tsv';
+var dataPath = '/app/data/budget-first-test.tsv';
 
 /**
  * anonymous called when the data has been initialized
@@ -57,7 +57,7 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
 
   class Department extends React.Component {
     render() {
-      console.log('Department');
+      console.log(this.props.params);
       const { departmentID } = this.props.params
 
       return (
@@ -144,12 +144,10 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
   render((
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Goals} />
+        <IndexRoute component={Departments} />
         <Route path="goals" component={Goals} />
         <Route path="departments" component={Departments} />
-        <Redirect from="departments/" to="departments" />
-        <Route path="department/:departmentID" component={Department} />
-        <Redirect from="departments/:departmentID" to="department/:departmentID" />
+        <Route path="department/:departmentId" component={Department} />
       </Route>
     </Router>
   ), document.getElementById('react-container'))
