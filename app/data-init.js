@@ -5,18 +5,21 @@ module.exports = function($, d3) {
     d3.tsv(dataPath, function(error, cityData) {
       if (error) throw error;
 
-      // keep only the key total
-      color.domain(d3.keys(cityData[0]).filter(function(key) { 
-        return key == "TOTAL";
-      }));
+      color.domain(["TOTAL"]);
+
+      // Remove the data with no organization name for the moment
+      var cityData = cityData.filter(function(d) {
+        return d.ORGANIZATION !== '';
+      });
 
       // aggregate by department/ORGANIZATION
-      var cityData = d3.nest()
+      cityData = d3.nest()
       .key(function(d) { return d.ORGANIZATION;})
       .rollup(function(d) { 
          return d3.sum(d, function(g) {return g.TOTAL; });
        })
       .entries(cityData);
+
 
       // calculate the city's full annual budget
       var cityBudget = 0;
@@ -32,11 +35,9 @@ module.exports = function($, d3) {
         });
         d.budgets.push({name: 'remainder', amount: cityBudget - d.values});
         d.percentage = d.values / cityBudget;
-        // console.log(JSON.stringify(d, null, 2));
-        // delete d.values;
       }
         
-      console.log(JSON.stringify(cityData, null, 2));
+      // console.log(JSON.stringify(cityData, null, 2));
       // resolve the promise and pass the data
       deferred.resolve(cityData, cityBudget);
     });  
