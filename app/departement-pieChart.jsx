@@ -1,3 +1,5 @@
+import utils from './utils/misc'
+
 module.exports = function(d3, React) {
 
   var module = {};
@@ -10,7 +12,7 @@ module.exports = function(d3, React) {
   class Chart extends React.Component {
     showDepartmentDetails(event) {
       console.log(this.props.departmentName);
-      var departmentSlug = this.props.departmentName.toLowerCase().trim().replace(/\s/g, '-');
+      var departmentSlug = utils.getSlugName(this.props.departmentName);
       window.location.href = window.location.origin + '/department/' + departmentSlug
     }
 
@@ -60,7 +62,7 @@ module.exports = function(d3, React) {
   class DataSeries extends React.Component {
     render() {
       var pie = d3.layout.pie();
-      var budgets = this.props.data.budgets;
+      var budgets = this.props.data.values.budgets;
       var amounts = budgets.map(function(budget) { return budget.amount; });
       var sectors = pie(amounts).map(function(point, i) {
         return (
@@ -77,17 +79,11 @@ module.exports = function(d3, React) {
 
   // module.PieChart = function() {
   module.PieChart = function() {
-    return React.createClass({
-      getDefaultProps: function() {
-        // console.log(module.radius);
-        return {
-          width: module.radius * 2,
-          height: module.radius * 2
-        };
-      },
-      render: function() {
-        var data = this.props.data;
-        var departmentName = data.key.replace(/Department|Dept|DP/gi, ''),
+    class PieChart extends React.Component {
+
+      render() {
+        var data = this.props.data,
+            departmentName = data.key,
             departmentArr = departmentName.split(/\s{1}/),
             departmentNamePart1 = departmentArr[0],
             departmentNamePart2 = departmentArr.splice(1).join(' ');
@@ -96,12 +92,20 @@ module.exports = function(d3, React) {
             <DataSeries data={data} width={this.props.width} height={this.props.height} />
             <text x={module.radius} y={this.props.height+15} className="text-middle">{departmentNamePart1}</text>
             <text x={module.radius} y={this.props.height+30} className="text-middle">{departmentNamePart2}</text>
-            <text x={module.radius} y={this.props.height-25} className="text-middle on-chart">{(data.percentage*100).toPrecision(3)+'%'}</text>
-            <text x={module.radius} y={this.props.height-10} className="text-middle on-chart">{(data.values/1000000.0).toPrecision(3) +'M'}</text>
+            <text x={module.radius} y={this.props.height-25} className="text-middle on-chart">{(data.values.percentage*100).toPrecision(3)+'%'}</text>
+            <text x={module.radius} y={this.props.height-10} className="text-middle on-chart">{(data.values.total/1000000.0).toPrecision(3) +'M'}</text>
           </Chart>
         );
       }
-    });
+    }
+
+    PieChart.defaultProps = {
+      width: module.radius * 2,
+      height: module.radius * 2
+    }
+
+    return PieChart;
+
   };
 
   // module.PieChart = PieChart;

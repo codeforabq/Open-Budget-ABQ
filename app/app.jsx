@@ -1,16 +1,17 @@
 "use strict";
 
-// require dependencies
+// dependencies
 import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, IndexRoute, Redirect } from 'react-router'
+import d3 from 'd3'
+import jqueryDeffered from 'jquery-deferred'
+import Button from 'react-bootstrap/lib/Button'
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
+import utils from './utils/misc'
+import init from './data-init'
+var dataInit = init(jqueryDeffered, d3);
 
-var d3 = require('d3');
-var jqueryDeffered = require('jquery-deferred');
-var Button = require('react-bootstrap/lib/Button'); 
-var ButtonGroup = require('react-bootstrap/lib/ButtonGroup');
-
-var dataInit = require('./data-init')(jqueryDeffered, d3);
 var color = d3.scale.ordinal()
     .range(["#98abc5", "#8a89a6"]);
 var dataPath = '/app/data/budget-first-test.tsv';
@@ -31,10 +32,11 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
   var PieChart = pieChartModule.PieChart();
 
   class Departments extends React.Component {
+
     constructor() {
       super();
       this.state = {
-        cityData: cityData
+        data: cityData
       };
     }
 
@@ -48,7 +50,7 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
       return (
         <div className="departments">
           <div className="chart-container">
-            {this.state.cityData.map(this.eachDepartement)}
+            {this.state.data.map(this.eachDepartement)}
           </div>
         </div> 
       );
@@ -56,9 +58,17 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
   }
 
   class Department extends React.Component {
+
     render() {
-      console.log(this.props.params);
-      const { departmentID } = this.props.params
+      const { departmentId } = this.props.params
+      var data = cityData.filter(function(d) { return utils.getSlugName(d.key) == departmentId })
+      if(data.length == 1) {
+        data = data[0];
+      } else {
+        console.error('Department view error: more than one data item have the same key name. key name must be unique');
+      }
+
+      console.log(JSON.stringify(data, null, 2));
 
       return (
         <div className="department">
