@@ -1,6 +1,11 @@
-module.exports = function($, d3) {
+'use strict'
+
+import d3 from 'd3'
+import jquery from 'jquery-deferred'
+
+module.exports = function() {
   return function(dataPath, color) {
-    var deferred = $.Deferred();
+    var deferred = jquery.Deferred();
 
     d3.tsv(dataPath, function(error, cityData) {
       if (error) throw error;

@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     ignore = require('gulp-ignore'); // TODO: not usedå
 
 function buildJs() {
-	return browserify({entries: ['app/app.jsx', 'app/data-init.js'], extensions: ['.jsx'], debug: true})
+	return browserify({entries: ['main.js'], extensions: ['.jsx'], debug: true})
         .transform('babelify', {presets: ['es2015', 'react']})
         .bundle()
         .pipe(source('bundle.js'))
