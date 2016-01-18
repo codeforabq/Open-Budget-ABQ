@@ -104,12 +104,14 @@ dataInit(dataPath, color).done(function(cityData, cityBudget) {
     }
 
     render() {
+      var currentURL = window.location.href,
+          barChartsURL = currentURL[currentURL.length-1] == '/' ? currentURL + 'bar-charts' : currentURL + '/bar-charts';
       return (
         <div className="Hamburger-menu-wrapper">
           <div className='hamburger-menu' onClick={this.setFilter.bind(this, !this.state.active)}><i className="fa fa-bars"></i></div>
           <ul className={this.isActive()}>
-            <li><Link to="/">Pie charts</Link></li>
-            <li><Link to="bar-charts">Bar charts</Link></li>
+            <li><Link to={currentURL}>Pie charts</Link></li>
+            <li><Link to={barChartsURL}>Bar charts</Link></li>
           </ul>
         </div>
       );
