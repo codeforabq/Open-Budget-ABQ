@@ -3,25 +3,36 @@ import { render } from 'react-dom'
 
 import utils from '../utils/misc'
 
-class Department extends React.Component {
+module.exports = function(data) {
 
-  render() {
-    const { departmentId } = this.props.params
-    var data = cityData.filter(function(d) { return utils.getSlugName(d.key) == departmentId })
-    if(data.length == 1) {
-      data = data[0];
-    } else {
-      console.error('Department view error: more than one data item have the same key name. key name must be unique');
+  class Department extends React.Component {
+
+    constructor() {
+      super();
+      this.state = {
+        data: data
+      };
     }
 
-    console.log(JSON.stringify(data, null, 2));
+    render() {
+      console.log(data);
+      const { departmentId } = this.props.params
+      var data = this.state.data.filter(function(d) { return utils.getSlugName(d.key) == departmentId })
+      if(data.length == 1) {
+        data = data[0];
+      } else {
+        console.error('Department view error: more than one data item have the same key name. key name must be unique');
+      }
 
-    return (
-      <div className="department">
-        <h1>Department</h1>
-      </div>
-    );
+      console.log(JSON.stringify(data, null, 2));
+
+      return (
+        <div className="department">
+          <h1>Department</h1>
+        </div>
+      );
+    }
   }
-}
 
-module.exports = Department;
+  return Department;
+};

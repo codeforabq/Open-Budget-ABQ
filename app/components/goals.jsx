@@ -1,6 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 
+var goals = {};
+
+goals.init = function(data) {
+  this.data = data;
+}
+
 class Goals extends React.Component {
   render() {
     return (
@@ -10,4 +16,6 @@ class Goals extends React.Component {
   }
 }
 
-module.exports = Goals;
+goals.Goals = Goals;
+
+module.exports = goals;

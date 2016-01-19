@@ -49,6 +49,7 @@ class Sector extends React.Component {
       .outerRadius(charts.radius)
       .innerRadius(0);
 
+console.log(charts.color);
     var arcStyle = {
       fill: charts.color(this.props.name),
     }

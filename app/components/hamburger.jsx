@@ -1,3 +1,5 @@
+import React from 'react'
+import { render } from 'react-dom'
 import { Link } from 'react-router'
 
 class Hamburger extends React.Component {
