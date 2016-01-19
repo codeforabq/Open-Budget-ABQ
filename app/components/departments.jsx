@@ -1,16 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import charts from './charts';
+import piechart from './piechart';
 
 module.exports = function(data, color, radius) {
 
-  charts.init({
-    color: color,
-    radius: radius
-  });
-
-  var PieChart = charts.PieChart();
+  var PieChart = piechart(color, radius);
 
   class Departments extends React.Component {
 
