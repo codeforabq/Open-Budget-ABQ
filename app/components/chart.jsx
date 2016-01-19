@@ -3,6 +3,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 
+import utils from '../utils/misc.js'
+
 
 class Chart extends React.Component {
 

@@ -9,15 +9,12 @@ module.exports = function(data) {
 
     constructor() {
       super();
-      this.state = {
-        data: data
-      };
+      this.data = data;
     }
 
     render() {
-      console.log(data);
       const { departmentId } = this.props.params
-      var data = this.state.data.filter(function(d) { return utils.getSlugName(d.key) == departmentId })
+      var data = this.data.filter(function(d) { return utils.getSlugName(d.key) == departmentId })
       if(data.length == 1) {
         data = data[0];
       } else {

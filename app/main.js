@@ -24,8 +24,10 @@ const RADIUS = 40;
  */
 dataInit(DATAPATH, color)
 .done(function(cityData, cityBudget) {
-	var Departments = departments(cityData, color, RADIUS);
-	var Department = department(cityData);
+	var Departments = departments(cityData, color, RADIUS),
+	    Department = department(cityData);//,
+	    // Goals = goals(),
+	    // Goal = goal();
 
 	render((
 	  <Router history={browserHistory}>
