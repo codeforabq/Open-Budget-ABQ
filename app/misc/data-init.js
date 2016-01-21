@@ -17,6 +17,8 @@ module.exports = function(dataPath, color) {
       return d.ORGANIZATION !== '';
     });
 
+    // console.log(JSON.stringify(cityData, null, 2));
+
     // aggregate by department/ORGANIZATION
     // TODO: similar division names for:
     // IG-Office of Inspector GenDept division IG-Inspector General is repeated
@@ -37,6 +39,7 @@ module.exports = function(dataPath, color) {
           divisions: d.map(function(g) {
            return {
              name: g.DIVISION,
+             description: g.ACCOUNT_DESCRIPTION,
              total: g.TOTAL
            }
          })
@@ -66,7 +69,7 @@ module.exports = function(dataPath, color) {
       d.values.percentage = d.values.total / cityBudget;
     }
 
-    // console.log(JSON.stringify(cityData, null, 2));
+    console.log(JSON.stringify(cityData, null, 2));
 
     // resolve the promise and pass the data
     deferred.resolve(cityData, cityBudget);
