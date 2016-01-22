@@ -17,34 +17,28 @@ module.exports = function(dataPath, color) {
       return d.ORGANIZATION !== '';
     });
 
-    // console.log(JSON.stringify(cityData, null, 2));
-
     // aggregate by department/ORGANIZATION
-    // TODO: similar division names for:
-    // IG-Office of Inspector GenDept division IG-Inspector General is repeated
-    // CL-Council Services division CL-Council Svcs is repeated
-    // filter them out is a possibility (after "divisions:"))
-    // d.filter(function(el, i, arr) { 
-    //   if(i > 0) {
-    //     return el.DIVISION == arr[i-1].DIVISION ? false : true;
-    //   } else {
-    //     return true;
-    //   }
-    // })
     var cityData = d3.nest()
     .key(function(d) { return d.ORGANIZATION.replace(/Department|Dept|DP/gi, '');})
     .rollup(function(d) {
-        return {
-          total: d3.sum(d, function(g) { return g.TOTAL; }),
-          divisions: d.map(function(g) {
-           return {
-             name: g.DIVISION,
-             description: g.ACCOUNT_DESCRIPTION,
-             total: g.TOTAL
-           }
-         })
-        }
-      })
+      return {
+        total: d3.sum(d, function(g) { return g.TOTAL; }),
+        divisions: d.map(function(g, i, arr) {
+          var obj = {
+           name: g.DIVISION,
+           description: g.ACCOUNT_DESCRIPTION,
+           total: g.TOTAL
+          };
+
+          if(i < arr.length-1) {
+            obj.showDescription = g.DIVISION == arr[i+1].DIVISION ? true : false;
+          } else {
+            obj.showDescription = g.DIVISION == arr[i-1].DIVISION ? true : false;
+          }
+          return obj;
+        })
+      }; 
+    })
     .entries(cityData);
 
     // calculate the city's full annual budget
@@ -57,14 +51,14 @@ module.exports = function(dataPath, color) {
     for (var i = 0, l = cityData.length; i < l; i++) {
       var d = cityData[i];
       d.values.budgets = [
-        { 
-          name: 'total', 
-          amount: +d.values.total 
-        },
-        { 
-          name: 'remainder', 
-          amount: cityBudget - d.values.total 
-        }
+      { 
+        name: 'total', 
+        amount: +d.values.total 
+      },
+      { 
+        name: 'remainder', 
+        amount: cityBudget - d.values.total 
+      }
       ];
       d.values.percentage = d.values.total / cityBudget;
     }
@@ -75,5 +69,6 @@ module.exports = function(dataPath, color) {
     deferred.resolve(cityData, cityBudget);
   });
 
-  return deferred.promise();
+return deferred.promise();
+
 };
