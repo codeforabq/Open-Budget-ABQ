@@ -15,7 +15,8 @@ import dataInit from './misc/data-init'
 
 var color = d3.scale.ordinal().range(["#98abc5", "#8a89a6"]);
 const DATAPATH = '/app/data/budget-first-test.tsv';
-const RADIUS = 40;
+const DEPT_LIST_RADIUS = 40;
+const DEPT_SINGLE_RADIUS = 40;
 
 /**
  * anonymous called when the data has been initialized
@@ -24,8 +25,8 @@ const RADIUS = 40;
  */
 dataInit(DATAPATH, color)
 .done(function(cityData, cityBudget) {
-	var Departments = departments(cityData, color, RADIUS),
-	    Department = department(cityData);//,
+	var Departments = departments(cityData, color, DEPT_LIST_RADIUS),
+	    Department = department(cityData, color, DEPT_SINGLE_RADIUS);//,
 	    // Goals = goals(),
 	    // Goal = goal();
 

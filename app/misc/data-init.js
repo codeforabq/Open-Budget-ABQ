@@ -27,7 +27,7 @@ module.exports = function(dataPath, color) {
           var obj = {
            name: g.DIVISION,
            description: g.ACCOUNT_DESCRIPTION,
-           total: g.TOTAL
+           amount: g.TOTAL
           };
 
           if(i < arr.length-1) {
@@ -63,7 +63,7 @@ module.exports = function(dataPath, color) {
       d.values.percentage = d.values.total / cityBudget;
     }
 
-    console.log(JSON.stringify(cityData, null, 2));
+    // console.log(JSON.stringify(cityData, null, 2));
 
     // resolve the promise and pass the data
     deferred.resolve(cityData, cityBudget);

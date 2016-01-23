@@ -1,13 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import piechart from './piechart';
+import DepartmentOverview from './departmentOverview';
 
 
 module.exports = function(data, color, radius) {
   
-  var PieChart = piechart(color, radius);
-
   class Departments extends React.Component {
 
     constructor() {
@@ -15,9 +13,9 @@ module.exports = function(data, color, radius) {
       this.data = data;
     }
 
-    eachDepartement(departmentData, i) {
+    drawDepartementOverview(departmentData, i) {
       return (
-        <PieChart key={i} index={i} data={departmentData}></PieChart>
+        <DepartmentOverview key={i} index={i} data={departmentData} color={color} radius={radius}></DepartmentOverview>
       );
     }
 
@@ -25,7 +23,7 @@ module.exports = function(data, color, radius) {
       return (
         <div className="departments">
           <div className="chart-container">
-            {this.data.map(this.eachDepartement)}
+            {this.data.map(this.drawDepartementOverview)}
           </div>
         </div> 
       );
