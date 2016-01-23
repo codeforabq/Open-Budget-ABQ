@@ -18,7 +18,7 @@ class DepartmentDivisions extends React.Component {
         height = width;
     return (
       <Chart width={this.props.width} height={this.props.height} departmentName={data.key}>
-        <DataSeries singleView={true} data={data} color={this.props.color} radius={this.props.radius} width={width} height={height} />
+        <DataSeries singleView={true} data={data} colors={this.props.colors} radius={this.props.radius} width={width} height={height} />
       </Chart>
     );
   }

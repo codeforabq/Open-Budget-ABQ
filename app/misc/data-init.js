@@ -3,14 +3,15 @@
 import d3 from 'd3'
 import jquery from 'jquery-deferred'
 
-module.exports = function(dataPath, color) {
+module.exports = function(dataPath) {
   var deferred = jquery.Deferred();
 
   d3.tsv(dataPath, function(error, cityData) {
     if (error) throw error;
 
     // define the domain
-    color.domain(["TOTAL"]);
+    // color.domain(["TOTAL"]);
+    // color.domain(d3.range(50));
 
     // Remove the data with no organization name for the moment
     var cityData = cityData.filter(function(d) {

@@ -22,7 +22,7 @@ class DataSeries extends React.Component {
     var amounts = dataForPie.map(function(d) { return d.amount; }),
         sectors = pie(amounts).map(function(point, i) {
           return (
-            <Sector data={point} color={classRef.props.color} radius={classRef.props.radius} key={i} name={dataForPie[i].name}/>
+            <Sector data={point} colors={classRef.props.colors} radius={classRef.props.radius} key={i} name={dataForPie[i].name}/>
           )
         }),
 

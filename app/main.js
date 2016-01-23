@@ -13,20 +13,23 @@ import goal from './components/goal'
 
 import dataInit from './misc/data-init'
 
-var color = d3.scale.ordinal().range(["#98abc5", "#8a89a6"]);
+// const COLOR_RANGE = ["#ff7f0e", "#ccc"];
+const COLOR_RANGE = ["#e6550d", "#fce6d1"];
 const DATAPATH = '/app/data/budget-first-test.tsv';
 const DEPT_LIST_RADIUS = 40;
 const DEPT_SINGLE_RADIUS = 40;
+
 
 /**
  * anonymous called when the data has been initialized
  * @param  object cityData   the data parsed and processed
  * @param  object cityBudget the budget of the city
  */
-dataInit(DATAPATH, color)
+dataInit(DATAPATH)
 .done(function(cityData, cityBudget) {
-	var Departments = departments(cityData, color, DEPT_LIST_RADIUS),
-	    Department = department(cityData, color, DEPT_SINGLE_RADIUS);//,
+
+	var Departments = departments(cityData, COLOR_RANGE, DEPT_LIST_RADIUS, cityBudget),
+	    Department = department(cityData, DEPT_SINGLE_RADIUS);//,
 	    // Goals = goals(),
 	    // Goal = goal();
 

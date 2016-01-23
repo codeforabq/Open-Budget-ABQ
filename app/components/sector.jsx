@@ -27,7 +27,7 @@ class Sector extends React.Component {
       .innerRadius(0);
 
     var arcStyle = {
-      fill: this.props.color(this.props.name),
+      fill: this.props.colors(this.props.data.value),
     }
 
     return (

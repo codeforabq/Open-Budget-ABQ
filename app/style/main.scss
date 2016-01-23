@@ -102,22 +102,22 @@ $susy: (
   gutters: 10,
 );
 
-.content-container {
+.departments {
   @include mainContainer(80%, 600px);
 
   .pie {
-    width: span(10);
+    width: span(10 of 24);
 
     margin-top: gutter() * 4;
     margin-bottom: gutter() * 8;
 
     @media (max-width: 649px) {
       &:nth-child(odd) {
-        margin-right: span(2);
+        margin-right: span(2 of 24);
       }
 
       &:nth-child(even) {
-        margin-left: span(2);
+        margin-left: span(2 of 24);
       }
     }
 
@@ -127,8 +127,8 @@ $susy: (
       margin-top: gutter() * 2;
       margin-bottom: gutter() * 4;
 
-      margin-right: span(0.5);
-      margin-left: span(0.5);
+      margin-right: span(0.5 of 24);
+      margin-left: span(0.5 of 24);
     }
 
     &:hover {
@@ -139,6 +139,10 @@ $susy: (
   .arc path {
     stroke: #fff;
   }
+}
+
+.department {
+  @include container(80%);
 }
 
 text {
