@@ -15,9 +15,10 @@ class Chart extends React.Component {
   }
 
   render() {
-    var departmentName = this.props.departmentName;
+    var departmentName = this.props.departmentName,
+        className = this.props.pieChart ? 'pie' : 'bar';
     return (
-      <svg onClick={this.showDepartmentDetails.bind(this)} className="pie" viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
+      <svg onClick={this.showDepartmentDetails.bind(this)} className={} viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
     );
   }
 }
