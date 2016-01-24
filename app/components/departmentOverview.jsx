@@ -25,7 +25,7 @@ class DepartmentOverview extends React.Component {
         budget = (data.values.total/1000000.0).toPrecision(3) +'M',
         chartType = 'pieChart';
     return (
-      <Chart width={width} height={height} departmentName={data.key} chartType={chartType}>
+      <Chart width={width} height={height} data={data} departmentName={data.key} chartType={chartType}>
         <DataSeries data={data} colors={colors} radius={radius} width={width} height={height} chartType={chartType}/>
         <text x={this.props.radius} y={height+15} className="text-middle">{departmentName1}</text>
         <text x={this.props.radius} y={height+30} className="text-middle">{departmentName2}</text>

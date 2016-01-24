@@ -13,15 +13,20 @@ class Chart extends React.Component {
   }
 
   render() {
-    var departmentName = this.props.departmentName;
+    var singleView = this.props.hasOwnProperty('singleView') && this.props.singleView;
+    var departmentName = this.props.departmentName,
+        data = this.props.data,
+        chartType = this.props.chartType,
+        numberOfElements = singleView ? data.values.divisions.length : data.values.budgets.length,
+        viewBox = chartType == 'pieChart' ? '0 0 81 81' : '0 0 81 ' + (this.props.barHeight*numberOfElements);
 
-    if(this.props.hasOwnProperty('singleView') && this.props.singleView) {
+    if(singleView) {
       return (
-        <svg className={this.props.chartType} viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
+        <svg className={chartType} viewBox={viewBox} preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
       );
     } else {
       return (
-        <svg onClick={this.goToDepartmentDetails.bind(this)} className={this.props.chartType} viewBox="0 0 81 81" preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
+        <svg onClick={this.goToDepartmentDetails.bind(this)} className={chartType} viewBox={viewBox} preserveAspectRatio="xMinYMin meet">{this.props.children}</svg>
       );
     }
   }

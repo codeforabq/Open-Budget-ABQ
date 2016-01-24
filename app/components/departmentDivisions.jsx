@@ -20,7 +20,7 @@ class DepartmentDivisions extends React.Component {
         height = width,
         chartType = 'pieChart';
     return (
-      <Chart singleView={true} chartType={chartType} departmentName={data.key} >
+      <Chart singleView={true} chartType={chartType} data={data} departmentName={data.key} >
         <DataSeries singleView={true} chartType={chartType} data={data} colors={colors} radius={radius} width={width} height={height} />
       </Chart>
     );

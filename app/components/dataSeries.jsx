@@ -5,6 +5,7 @@ import { render } from 'react-dom'
 import d3 from 'd3'
 
 import Sector from './sector'
+import Bar from './bar'
 
 
 class DataSeries extends React.Component {
@@ -13,6 +14,7 @@ class DataSeries extends React.Component {
     var pie = d3.layout.pie(),
         classRef = this,
         dataForPie = null,
+        total = this.props.data.values.total,
         barHeight = this.props.barHeight;
 
     // departments or department single view
@@ -29,19 +31,15 @@ class DataSeries extends React.Component {
     // create the chart svg tree according to charType
     if(this.props.chartType == 'pieChart') {
       transform = 'translate(' + this.props.radius + ', ' + this.props.radius + ')';
-      svgTree = pie(amounts).map(function(point, i) {
+      svgTree = pie(amounts).map(function(d, i) {
         return (
-          <Sector data={point} colors={classRef.props.colors} radius={classRef.props.radius} key={i} name={dataForPie[i].name}/>
+          <Sector data={d} key={i} radius={classRef.props.radius} colors={classRef.props.colors} name={dataForPie[i].name}/>
         )
       });
     } else {
-
       svgTree = dataForPie.map(function(d, i) {
-        var transform = 'translate(0, ' + (i*barHeight) + ')';
         return (
-          <g transform={transform} key={i}>
-            <rect width={100} height={barHeight-1}></rect>
-          </g>
+          <Bar data={d} key={i} index={i} barHeight={barHeight} total={total} colors={classRef.props.colors} name={dataForPie[i].name}/>
         )
       });
     }

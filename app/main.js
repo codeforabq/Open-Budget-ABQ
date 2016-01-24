@@ -19,7 +19,7 @@ const DATAPATH = '/app/data/budget-first-test.tsv';
 const DEPT_LIST_RADIUS = 40;
 const DEPT_SINGLE_RADIUS = 40;
 
-const BAR_HEIGHT = 5;
+const BAR_HEIGHT = 3;
 
 
 /**
