@@ -14,11 +14,14 @@ class DepartmentDivisions extends React.Component {
 
   render() {
     var data = this.props.data,
-        width = this.props.radius * 2,
-        height = width;
+        colors = this.props.colors,
+        radius = this.props.radius,
+        width = radius * 2,
+        height = width,
+        chartType = 'pieChart';
     return (
-      <Chart width={this.props.width} height={this.props.height} departmentName={data.key} pieChart={true}>
-        <DataSeries singleView={true} data={data} colors={this.props.colors} radius={this.props.radius} width={width} height={height} />
+      <Chart singleView={true} chartType={chartType} departmentName={data.key} >
+        <DataSeries singleView={true} chartType={chartType} data={data} colors={colors} radius={radius} width={width} height={height} />
       </Chart>
     );
   }

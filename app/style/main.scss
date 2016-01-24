@@ -105,19 +105,19 @@ $susy: (
 .departments {
   @include mainContainer(80%, 600px);
 
-  .pie {
-    width: span(10 of 24);
+  .pieChart {
+    width: span(10);
 
     margin-top: gutter() * 4;
     margin-bottom: gutter() * 8;
 
     @media (max-width: 649px) {
       &:nth-child(odd) {
-        margin-right: span(2 of 24);
+        margin-right: span(2);
       }
 
       &:nth-child(even) {
-        margin-left: span(2 of 24);
+        margin-left: span(2);
       }
     }
 
@@ -127,8 +127,8 @@ $susy: (
       margin-top: gutter() * 2;
       margin-bottom: gutter() * 4;
 
-      margin-right: span(0.5 of 24);
-      margin-left: span(0.5 of 24);
+      margin-right: span(0.5);
+      margin-left: span(0.5);
     }
 
     &:hover {

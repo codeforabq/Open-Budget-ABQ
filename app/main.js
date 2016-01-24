@@ -19,6 +19,8 @@ const DATAPATH = '/app/data/budget-first-test.tsv';
 const DEPT_LIST_RADIUS = 40;
 const DEPT_SINGLE_RADIUS = 40;
 
+const BAR_HEIGHT = 5;
+
 
 /**
  * anonymous called when the data has been initialized
@@ -29,7 +31,7 @@ dataInit(DATAPATH)
 .done(function(cityData, cityBudget) {
 
 	var Departments = departments(cityData, COLOR_RANGE, DEPT_LIST_RADIUS, cityBudget),
-	    Department = department(cityData, DEPT_SINGLE_RADIUS);//,
+	    Department = department(cityData, DEPT_SINGLE_RADIUS, BAR_HEIGHT);//,
 	    // Goals = goals(),
 	    // Goal = goal();
 

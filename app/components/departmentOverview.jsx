@@ -14,18 +14,23 @@ class DepartmentOverview extends React.Component {
 
   render() {
     var data = this.props.data,
-        width = this.props.radius * 2,
+        radius = this.props.radius,
+        width = radius * 2,
         height = width,
+        colors = this.props.colors,
         departmentNameArr = data.key.split(/\s{1}/),
-        departmentNamePart1 = departmentNameArr[0],
-        departmentNamePart2 = departmentNameArr.splice(1).join(' ');
+        departmentName1 = departmentNameArr[0],
+        departmentName2 = departmentNameArr.splice(1).join(' '),
+        percentage = (data.values.percentage*100).toPrecision(3) +'%',
+        budget = (data.values.total/1000000.0).toPrecision(3) +'M',
+        chartType = 'pieChart';
     return (
-      <Chart width={this.props.width} height={this.props.height} departmentName={data.key}>
-        <DataSeries data={data} colors={this.props.colors} radius={this.props.radius} width={width} height={height} />
-        <text x={this.props.radius} y={height+15} className="text-middle">{departmentNamePart1}</text>
-        <text x={this.props.radius} y={height+30} className="text-middle">{departmentNamePart2}</text>
-        <text x={this.props.radius} y={height-25} className="text-middle on-chart">{(data.values.percentage*100).toPrecision(3)+'%'}</text>
-        <text x={this.props.radius} y={height-10} className="text-middle on-chart">{(data.values.total/1000000.0).toPrecision(3) +'M'}</text>
+      <Chart width={width} height={height} departmentName={data.key} chartType={chartType}>
+        <DataSeries data={data} colors={colors} radius={radius} width={width} height={height} chartType={chartType}/>
+        <text x={this.props.radius} y={height+15} className="text-middle">{departmentName1}</text>
+        <text x={this.props.radius} y={height+30} className="text-middle">{departmentName2}</text>
+        <text x={this.props.radius} y={height-25} className="text-middle on-chart">{percentage}</text>
+        <text x={this.props.radius} y={height-10} className="text-middle on-chart">{budget}</text>
       </Chart>
     );
   }

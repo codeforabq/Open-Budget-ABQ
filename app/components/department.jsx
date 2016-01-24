@@ -5,8 +5,9 @@ import { Link } from 'react-router'
 import utils from '../utils/misc'
 
 import DepartmentDivisions from './departmentDivisions';
+import DepartmentDetails from './departmentDetails';
 
-module.exports = function(data, radius) {
+module.exports = function(data, radius, barHeight) {
 
   class Department extends React.Component {
 
@@ -22,25 +23,18 @@ module.exports = function(data, radius) {
       }
     }
 
-    drawDepartement() {
+    render() {
       const TOTAL  = this.data.values.total,
             RANGE  = ['#f2f2fc', '#9ecae1', '#6baed6', '#fd8d3c'],
             DOMAIN = [0, TOTAL/20, TOTAL/18, TOTAL/4];
 
-      console.log('total:'+TOTAL);
-
       var colors = d3.scale.linear().domain(DOMAIN).range(RANGE);
 
       return (
-        <DepartmentDivisions key={this.data.key} data={this.data} colors={colors} radius={radius}></DepartmentDivisions>
-      );
-    }
-
-    render() {
-      return (
         <div className="department">
           <h1>{this.data.key}</h1>
-          {this.drawDepartement()}
+          <DepartmentDivisions data={this.data} colors={colors} radius={radius}></DepartmentDivisions>
+          <DepartmentDetails data={this.data} colors={colors} radius={radius} barHeight={barHeight}></DepartmentDetails>
           <Link to="/departments">Back to Departments</Link>
         </div>
       );
